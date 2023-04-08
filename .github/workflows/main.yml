@@ -2,7 +2,7 @@ name: Run "Model" in a Docker container
 on: workflow_dispatch
 jobs:
   run-model:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env: 
        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
