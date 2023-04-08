@@ -19,7 +19,7 @@ jobs:
     - name: Push to docker hub :latest
       uses: actions-hub/docker@master
       with:
-       args: push ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest
+       args: push ${{ secrets.DOCKER_USERNAME }}/my-image:latest
     - name: Run Python script in Docker container
       run: |
         docker login --username ${{ env.DOCKER_USERNAME }} --password ${{ env.DOCKER_PASSWORD }}
