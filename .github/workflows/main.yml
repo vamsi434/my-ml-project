@@ -1,0 +1,21 @@
+name: Run "Model" in a Docker container
+on: workflow_dispatch
+jobs:
+  run-model:
+    runs-on: self-hosted
+    env: 
+       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build Docker image
+      run: docker build -t vamsi1997docker/model:latest .
+    - name: Push to docker hub :latest
+      uses: actions-hub/docker@master
+      with:
+       args: push vamsi1997docker/my-image:latest
+    - name: Run Python script in Docker container
+      run: |
+        docker login --username ${{ env.DOCKER_USERNAME }} --password ${{ env.DOCKER_PASSWORD }}
+        docker run -p 8080:80 --name python vamsi1997docker/model:latest
