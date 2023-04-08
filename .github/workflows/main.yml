@@ -14,8 +14,8 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push to docker hub :latest
       uses: actions-hub/docker@master
       with:
@@ -23,4 +23,4 @@ jobs:
     - name: Run Python script in Docker container
       run: |
         docker login --username ${{ env.DOCKER_USERNAME }} --password ${{ env.DOCKER_PASSWORD }}
-        docker run -p 8080:80 --name python ${{ secrets.DOCKERHUB_USERNAME }}/model:latest
+        docker run -p 8080:80 --name python ${{ secrets.DOCKER_USERNAME }}/model:latest
