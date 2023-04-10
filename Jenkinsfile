@@ -26,7 +26,7 @@ pipeline {
         stage('docker container creation') {
             steps {
               sh 'docker rm -f python'
-              sh 'docker run --rm -p 8081:80 --name python ${DOCKER_USR}/model:latest'
+              sh 'docker run -p 8081:80 --name python ${DOCKER_USR}/model:latest'
               
             }
         }
